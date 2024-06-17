@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<odoo>
+    <!-- QWeb Report Template -->
+    <template id="Banquet.banquet_report">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <main>
+                    <h2>Banquet Report</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Date</th>
+                                <th>Location</th>
+                                <th>Attendees</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="doc">
+                                <tr>
+                                    <td><t t-esc="doc.name"/></td>
+                                    <td><t t-esc="doc.date"/></td>
+                                    <td><t t-esc="doc.location"/></td>
+                                    <td><t t-esc="doc.attendees"/></td>
+                                    <td><t t-esc="doc.notes"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </main>
+            </div>
+        </t>
+    </template>
+</odoo>

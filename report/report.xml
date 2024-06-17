@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <report
+            id="banquet_management_report"
+            string="Banquet Report PDF"
+            model="banquet.management"
+            report_type="qweb-pdf"
+            name="Banquet.banquet_report"
+            file="Banquet.banquet_report"/>
+
+     <report
+            id="banquet_management_report_excel"
+            string="Banquet Excel Reports"
+            model="banquet.management"
+            report_type="xlsx"
+            name="Banquet.banquet_report_excel"
+            file="Banquet.banquet_report_excel"/>
+</odoo>

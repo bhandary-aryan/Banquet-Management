@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <!-- Define the form view for the Banquet Management model -->
+    <record id="view_banquet_management_form" model="ir.ui.view">
+        <field name="name">banquet.management.form</field>
+        <field name="model">banquet.management</field>
+        <field name="arch" type="xml">
+            <form string="Banquet Management">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="date"/>
+                        <field name="location"/>
+                        <field name="attendees"/>
+                        <field name="notes"/>
+                        <!--                        <field name="active"/>-->
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Define the tree view for the Banquet Management model -->
+    <record id="view_banquet_management_tree" model="ir.ui.view">
+        <field name="name">banquet.management.tree</field>
+        <field name="model">banquet.management</field>
+        <field name="arch" type="xml">
+            <tree string="Banquet Management">
+                <field name="name"/>
+                <field name="date"/>
+                <field name="location"/>
+                <field name="attendees"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <!--define a kanban view in banquet management-->
+    <record id="view_banquet_kanban" model="ir.ui.view">
+        <field name="name">banquet.management.kanban</field>
+        <field name="model">banquet.management</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="date"/>
+                <field name="location"/>
+
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <strong t-esc="record.name.value"/>
+                            <div>
+                                <span>Date:</span>
+                                <span t-esc="record.date.value"/>
+                            </div>
+                            <div>
+                                <span>Location:</span>
+                                <span t-esc="record.location.value"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <!-- Pivot View -->
+    <record id="view_banquet_pivot" model="ir.ui.view">
+        <field name="name">banquet.management.pivot</field>
+        <field name="model">banquet.management</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="date" type="row"/>
+                <field name="attendees" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Graph View (for Pie Chart) -->
+    <record id="view_banquet_graph" model="ir.ui.view">
+        <field name="name">banquet.management.graph</field>
+        <field name="model">banquet.management</field>
+        <field name="arch" type="xml">
+            <graph type="pie">
+                <field name="attendees" type="measure"/>
+                <field name="location" type="col"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Pivot View -->
+    <record id="view_banquet_pivot" model="ir.ui.view">
+        <field name="name">banquet.management.pivot</field>
+        <field name="model">banquet.management</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="date" type="row"/>
+                <field name="attendees" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Graph View (for Pie Chart) -->
+    <record id="view_banquet_graph" model="ir.ui.view">
+        <field name="name">banquet.management.graph</field>
+        <field name="model">banquet.management</field>
+        <field name="arch" type="xml">
+            <graph type="pie">
+                <field name="attendees" type="measure"/>
+                <field name="location" type="col"/>
+            </graph>
+        </field>
+    </record>
+    <!--define a search view in banquet management-->
+    <record id="view_banquet_management_search" model="ir.ui.view">
+        <field name="name">banquet.management.search</field>
+        <field name="model">banquet.management</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string='Banquet Name'
+                       filter_domain="['|', ('name', 'ilike', self), ('location', 'ilike', self)]"/>
+                <field name="date" string="Date"/>
+                <field name="location"/>
+                <field name="attendees"/>
+
+                <filter name="filter_name" string="crmic" domain="[('name', '=', 'crmic')]"/>
+                <filter name="filter_location" string="Ratopul" domain="[('location', '=', 'Ratopul')]"/>
+
+                <group expand="0" string="Group By">
+                    <filter string="Banquet Location" name="group_by_location" context="{'group_by': 'location'}"/>
+                    <filter string="Banquet Name" name="group_by_name" context="{'group_by': 'name'}"/>
+
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+
+    <!-- Define an action to open the Banquet Management cafe_views -->
+    <record id="action_banquet_management" model="ir.actions.act_window">
+        <field name="name">Banquet Management</field>
+        <field name="res_model">banquet.management</field>
+        <field name="view_mode">tree,kanban,form,pivot,graph</field>
+
+    </record>
+
+</odoo>

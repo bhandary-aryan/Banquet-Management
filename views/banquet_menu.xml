@@ -1,0 +1,15 @@
+
+<odoo>
+
+
+    <!-- Define the menu items -->
+    <menuitem id="menu_banquet_management_root" name="Banquet Management" sequence="10"/>
+
+    <menuitem id="menu_banquet_management_main" name="Banquets" parent="menu_banquet_management_root" sequence="10"/>
+
+    <menuitem id="menu_banquet_staff_main" name="Banquets Staffs" parent="menu_banquet_management_root" sequence="10"/>
+
+    <menuitem id="menu_banquet_management" name="Manage Banquets" parent="menu_banquet_management_main"
+              action="action_banquet_management" sequence="10"/>
+
+</odoo>
